@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fix ambiguous duration class warning by escaping brackets */
+.duration-\[3000ms\] {
+  transition-duration: 3000ms;
+}

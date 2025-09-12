@@ -1,0 +1,120 @@
+/* tailwind.css - Tech Aura Theme with Tailwind */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: #0B0D15;
+    --color-foreground: #E0E2E7;
+    --color-border: rgba(26, 48, 89, 0.4);
+    --color-input: #151820;
+    --color-ring: #00A3FF;
+
+    --color-card: #151820;
+    --color-card-foreground: #E0E2E7;
+
+    --color-popover: #151820;
+    --color-popover-foreground: #E0E2E7;
+
+    --color-muted: #20242D;
+    --color-muted-foreground: #8B94A4;
+
+    --color-primary: #00A3FF;
+    --color-primary-foreground: #0B0D15;
+
+    --color-secondary: #8A2BE2;
+    --color-secondary-foreground: #E0E2E7;
+
+    --color-accent: #00FFE0;
+    --color-accent-foreground: #0B0D15;
+
+    --color-success: #50E3C2;
+    --color-success-foreground: #0B0D15;
+
+    --color-warning: #FFD700;
+    --color-warning-foreground: #0B0D15;
+
+    --color-error: #FF3B30;
+    --color-error-foreground: #E0E2E7;
+
+    --color-text-primary: #E0E2E7;
+    --color-text-secondary: #8B94A4;
+
+    --color-surface: #20242D;
+    --color-deep-space: #0B0D15;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Shadows */
+  .shadow-tech-sm {
+    box-shadow: 0 1px 4px rgba(0,163,255,0.1), 0 0 2px rgba(138,43,226,0.05);
+  }
+  .shadow-tech-md {
+    box-shadow: 0 2px 8px rgba(0,163,255,0.15), 0 1px 4px rgba(138,43,226,0.1);
+  }
+  .shadow-tech-lg {
+    box-shadow: 0 4px 16px rgba(0,163,255,0.2), 0 2px 8px rgba(138,43,226,0.15);
+  }
+
+  /* Glow */
+  .shadow-glow {
+    box-shadow:
+      0 0 20px rgba(0,163,255,0.2),
+      0 0 40px rgba(138,43,226,0.1),
+      inset 0 1px 0 rgba(224,226,231,0.05);
+  }
+
+  /* Hover micro-interactions */
+  .micro-interaction {
+    @apply transition-all duration-300 ease-out;
+  }
+  .micro-interaction:hover {
+    @apply transform scale-[1.02];
+    filter: brightness(1.2);
+  }
+
+  /* Tech gradient overlay */
+  .tech-gradient-overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 163, 255, 0.1),
+      rgba(138, 43, 226, 0.1),
+      rgba(0, 255, 224, 0.1)
+    );
+  }
+
+  .tech-border {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--color-deep-space), var(--color-deep-space)) padding-box,
+      linear-gradient(135deg, var(--color-primary), var(--color-secondary), var(--color-accent)) border-box;
+  }
+
+  .tech-hover {
+    transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+  }
+  .tech-hover:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+      0 15px 30px rgba(0,163,255,0.2),
+      0 8px 15px rgba(138,43,226,0.15),
+      0 0 40px rgba(0,255,224,0.1);
+  }
+}
