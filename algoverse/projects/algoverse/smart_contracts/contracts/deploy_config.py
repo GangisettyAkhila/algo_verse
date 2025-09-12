@@ -1,6 +1,5 @@
-# smart_contracts/contracts/deploy_config.py
+# smart_contracts/deploy_config.py
 
-# Optional: keep your dict (pure Python, no YAML colons outside a dict)
 deploy_config = {
     "name": "algoverse",
     "version": "1.0",
@@ -8,8 +7,9 @@ deploy_config = {
         "contracts": [
             {
                 "name": "CasinoFund",
-                "approval": "./contract.py",  # note: AlgoKit deploy expects built artifacts, not .py
-                "clear": "./contract.py",
+                # Use the compiled artifact, e.g., .arc32.json or .teal, not the .py file
+                "approval": "./artifacts/CasinoFund.approval.teal",
+                "clear": "./artifacts/CasinoFund.clear.teal",
                 "type": "app",
                 "on_complete_action": "noop",
                 "create_args": [],
@@ -21,7 +21,6 @@ deploy_config = {
     }
 }
 
-# Provide a deploy() function so import succeeds
 def deploy() -> None:
-    # You can leave this empty for build to pass, or implement real deployment via typed clients
+    # Implement deployment logic here, or leave empty for build to pass
     pass

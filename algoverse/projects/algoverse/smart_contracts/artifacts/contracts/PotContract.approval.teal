@@ -1,0 +1,167 @@
+#pragma version 10
+#pragma typetrack false
+
+// smart_contracts.contracts.contract.PotContract.__algopy_entrypoint_with_init() -> uint64:
+main:
+    intcblock 0 1
+    bytecblock "pot" "creator"
+    txn ApplicationID
+    bnz main_after_if_else@2
+    // smart_contracts/contracts/contract.py:9-10
+    // # On create: set creator and pot to 0
+    // self.creator = Txn.sender
+    bytec_1 // "creator"
+    txn Sender
+    app_global_put
+    // smart_contracts/contracts/contract.py:11
+    // self.pot = UInt64(0)
+    bytec_0 // "pot"
+    intc_0 // 0
+    app_global_put
+
+main_after_if_else@2:
+    // smart_contracts/contracts/contract.py:4
+    // class PotContract(ARC4Contract):
+    txn NumAppArgs
+    bz main_bare_routing@7
+    pushbytess 0xe9892bef 0xb7355fd1 // method "fund()void", method "withdraw()void"
+    txna ApplicationArgs 0
+    match main_fund_route@5 main_withdraw_route@6
+
+main_after_if_else@9:
+    // smart_contracts/contracts/contract.py:4
+    // class PotContract(ARC4Contract):
+    intc_0 // 0
+    return
+
+main_withdraw_route@6:
+    // smart_contracts/contracts/contract.py:23
+    // @abimethod
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    callsub withdraw
+    intc_1 // 1
+    return
+
+main_fund_route@5:
+    // smart_contracts/contracts/contract.py:13
+    // @abimethod
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    callsub fund
+    intc_1 // 1
+    return
+
+main_bare_routing@7:
+    // smart_contracts/contracts/contract.py:4
+    // class PotContract(ARC4Contract):
+    txn OnCompletion
+    bnz main_after_if_else@9
+    txn ApplicationID
+    !
+    assert // can only call when creating
+    intc_1 // 1
+    return
+
+
+// smart_contracts.contracts.contract.PotContract.fund() -> void:
+fund:
+    // smart_contracts/contracts/contract.py:15-16
+    // # Users fund via a grouped payment -> app call (payment at index 0, app call at index 1)
+    // assert Global.group_size == UInt64(2)
+    global GroupSize
+    pushint 2 // 2
+    ==
+    assert
+    // smart_contracts/contracts/contract.py:17
+    // assert Txn.group_index == UInt64(1)
+    txn GroupIndex
+    intc_1 // 1
+    ==
+    assert
+    // smart_contracts/contracts/contract.py:18
+    // payment = Txn.accounts(0)
+    txna Accounts 0
+    // smart_contracts/contracts/contract.py:19
+    // assert payment == Global.current_application_address
+    global CurrentApplicationAddress
+    ==
+    assert
+    // smart_contracts/contracts/contract.py:20
+    // assert Txn.amount > UInt64(0)
+    txn Amount
+    assert
+    // smart_contracts/contracts/contract.py:21
+    // self.pot += Txn.amount
+    intc_0 // 0
+    bytec_0 // "pot"
+    app_global_get_ex
+    assert // check self.pot exists
+    txn Amount
+    +
+    bytec_0 // "pot"
+    swap
+    app_global_put
+    retsub
+
+
+// smart_contracts.contracts.contract.PotContract.withdraw() -> void:
+withdraw:
+    // smart_contracts/contracts/contract.py:25-26
+    // # Only creator can withdraw
+    // assert Txn.sender == self.creator
+    txn Sender
+    intc_0 // 0
+    bytec_1 // "creator"
+    app_global_get_ex
+    assert // check self.creator exists
+    ==
+    assert
+    // smart_contracts/contracts/contract.py:27-32
+    // # Inner payment to creator; set fee=0 and rely on outer fee pooling
+    // itxn.Payment(
+    //     amount=self.pot,
+    //     receiver=Txn.sender,
+    //     fee=UInt64(0)
+    // ).submit()
+    itxn_begin
+    // smart_contracts/contracts/contract.py:29
+    // amount=self.pot,
+    intc_0 // 0
+    bytec_0 // "pot"
+    app_global_get_ex
+    assert // check self.pot exists
+    // smart_contracts/contracts/contract.py:30
+    // receiver=Txn.sender,
+    txn Sender
+    itxn_field Receiver
+    itxn_field Amount
+    // smart_contracts/contracts/contract.py:27-28
+    // # Inner payment to creator; set fee=0 and rely on outer fee pooling
+    // itxn.Payment(
+    intc_1 // pay
+    itxn_field TypeEnum
+    // smart_contracts/contracts/contract.py:31
+    // fee=UInt64(0)
+    intc_0 // 0
+    itxn_field Fee
+    // smart_contracts/contracts/contract.py:27-32
+    // # Inner payment to creator; set fee=0 and rely on outer fee pooling
+    // itxn.Payment(
+    //     amount=self.pot,
+    //     receiver=Txn.sender,
+    //     fee=UInt64(0)
+    // ).submit()
+    itxn_submit
+    // smart_contracts/contracts/contract.py:33
+    // self.pot = UInt64(0)
+    bytec_0 // "pot"
+    intc_0 // 0
+    app_global_put
+    retsub

@@ -1,0 +1,675 @@
+{
+  "version": 3,
+  "sources": [
+    "../../contracts/contract.py"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AASQ;AAAe;;AAAf;AACA;AAAW;AAAX;AAPR;;AAAA;;;AAAA;;;;;;;;;;;;AAAA;;;AAAA;;;;;;AAAA;;AAmBK;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;AAAA;;AAVA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;AAAA;;AATL;;AAAA;;;;;;;;;AAYe;;AAAqB;;AAArB;AAAP;AACO;;AAAmB;AAAnB;AAAP;AACU;;;AACQ;;AAAX;AAAP;AACO;;AAAP;AACA;AAAA;AAAA;AAAA;AAAY;;AAAZ;AAAA;AAAA;AAAA;;AAKO;;AAAc;AAAA;AAAA;AAAA;AAAd;AAAP;AAEA;AACW;AAAA;AAAA;AAAA;AACE;;;;;;AAFb;;;AAGQ;;;AAHR;AAKA;AAAW;AAAX;",
+  "op_pc_offset": 0,
+  "pc_events": {
+    "1": {
+      "subroutine": "smart_contracts.contracts.contract.PotContract.__algopy_entrypoint_with_init",
+      "params": {},
+      "block": "main",
+      "stack_in": [],
+      "op": "intcblock 0 1"
+    },
+    "5": {
+      "op": "bytecblock \"pot\" \"creator\""
+    },
+    "19": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "21": {
+      "op": "bnz main_after_if_else@2",
+      "stack_out": []
+    },
+    "24": {
+      "op": "bytec_1 // \"creator\"",
+      "defined_out": [
+        "\"creator\""
+      ],
+      "stack_out": [
+        "\"creator\""
+      ]
+    },
+    "25": {
+      "op": "txn Sender",
+      "defined_out": [
+        "\"creator\"",
+        "materialized_values%0#0"
+      ],
+      "stack_out": [
+        "\"creator\"",
+        "materialized_values%0#0"
+      ]
+    },
+    "27": {
+      "op": "app_global_put",
+      "stack_out": []
+    },
+    "28": {
+      "op": "bytec_0 // \"pot\"",
+      "defined_out": [
+        "\"pot\""
+      ],
+      "stack_out": [
+        "\"pot\""
+      ]
+    },
+    "29": {
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "\"pot\"",
+        "0"
+      ],
+      "stack_out": [
+        "\"pot\"",
+        "0"
+      ]
+    },
+    "30": {
+      "op": "app_global_put",
+      "stack_out": []
+    },
+    "31": {
+      "block": "main_after_if_else@2",
+      "stack_in": [],
+      "op": "txn NumAppArgs",
+      "defined_out": [
+        "tmp%0#2"
+      ],
+      "stack_out": [
+        "tmp%0#2"
+      ]
+    },
+    "33": {
+      "op": "bz main_bare_routing@7",
+      "stack_out": []
+    },
+    "36": {
+      "op": "pushbytess 0xe9892bef 0xb7355fd1 // method \"fund()void\", method \"withdraw()void\"",
+      "defined_out": [
+        "Method(fund()void)",
+        "Method(withdraw()void)"
+      ],
+      "stack_out": [
+        "Method(fund()void)",
+        "Method(withdraw()void)"
+      ]
+    },
+    "48": {
+      "op": "txna ApplicationArgs 0",
+      "defined_out": [
+        "Method(fund()void)",
+        "Method(withdraw()void)",
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "Method(fund()void)",
+        "Method(withdraw()void)",
+        "tmp%2#0"
+      ]
+    },
+    "51": {
+      "op": "match main_fund_route@5 main_withdraw_route@6",
+      "stack_out": []
+    },
+    "57": {
+      "block": "main_after_if_else@9",
+      "stack_in": [],
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "58": {
+      "op": "return",
+      "stack_out": []
+    },
+    "59": {
+      "block": "main_withdraw_route@6",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%7#0"
+      ],
+      "stack_out": [
+        "tmp%7#0"
+      ]
+    },
+    "61": {
+      "op": "!",
+      "defined_out": [
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "tmp%8#0"
+      ]
+    },
+    "62": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "63": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%9#0"
+      ],
+      "stack_out": [
+        "tmp%9#0"
+      ]
+    },
+    "65": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "66": {
+      "callsub": "smart_contracts.contracts.contract.PotContract.withdraw",
+      "op": "callsub withdraw"
+    },
+    "69": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "70": {
+      "op": "return",
+      "stack_out": []
+    },
+    "71": {
+      "block": "main_fund_route@5",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "tmp%3#0"
+      ]
+    },
+    "73": {
+      "op": "!",
+      "defined_out": [
+        "tmp%4#0"
+      ],
+      "stack_out": [
+        "tmp%4#0"
+      ]
+    },
+    "74": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "75": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%5#0"
+      ],
+      "stack_out": [
+        "tmp%5#0"
+      ]
+    },
+    "77": {
+      "error": "can only call when not creating",
+     "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "78": {
+      "callsub": "smart_contracts.contracts.contract.PotContract.fund",
+      "op": "callsub fund"
+    },
+    "81": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "82": {
+      "op": "return",
+      "stack_out": []
+    },
+    "83": {
+      "block": "main_bare_routing@7",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%11#0"
+      ],
+      "stack_out": [
+        "tmp%11#0"
+      ]
+    },
+    "85": {
+      "op": "bnz main_after_if_else@9",
+      "stack_out": []
+    },
+    "88": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%12#0"
+      ],
+      "stack_out": [
+        "tmp%12#0"
+      ]
+    },
+    "90": {
+      "op": "!",
+      "defined_out": [
+        "tmp%13#0"
+      ],
+      "stack_out": [
+        "tmp%13#0"
+      ]
+    },
+    "91": {
+      "error": "can only call when creating",
+      "op": "assert // can only call when creating",
+      "stack_out": []
+    },
+    "92": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "93": {
+      "op": "return",
+      "stack_out": []
+    },
+    "94": {
+      "subroutine": "smart_contracts.contracts.contract.PotContract.fund",
+      "params": {},
+      "block": "fund",
+      "stack_in": [],
+      "op": "global GroupSize",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "96": {
+      "op": "pushint 2 // 2",
+      "defined_out": [
+        "2",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "2"
+      ]
+    },
+    "98": {
+      "op": "==",
+      "defined_out": [
+        "tmp%1#0"
+      ],
+      "stack_out": [
+        "tmp%1#0"
+      ]
+    },
+    "99": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "100": {
+      "op": "txn GroupIndex",
+      "defined_out": [
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "tmp%2#0"
+      ]
+    },
+    "102": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1",
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "tmp%2#0",
+        "1"
+      ]
+    },
+    "103": {
+      "op": "==",
+      "defined_out": [
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "tmp%3#0"
+      ]
+    },
+    "104": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "105": {
+      "op": "txna Accounts 0",
+      "defined_out": [
+        "payment#0"
+      ],
+      "stack_out": [
+        "payment#0"
+      ]
+    },
+    "108": {
+      "op": "global CurrentApplicationAddress",
+      "defined_out": [
+        "payment#0",
+        "tmp%4#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "tmp%4#0"
+      ]
+    },
+    "110": {
+      "op": "==",
+      "defined_out": [
+        "tmp%5#0"
+      ],
+      "stack_out": [
+        "tmp%5#0"
+      ]
+    },
+    "111": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "112": {
+      "op": "txn Amount",
+      "defined_out": [
+        "tmp%6#0"
+      ],
+      "stack_out": [
+        "tmp%6#0"
+      ]
+    },
+    "114": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "115": {
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "0"
+      ],
+      "stack_out": [
+        "0"
+      ]
+    },
+    "116": {
+      "op": "bytec_0 // \"pot\"",
+      "defined_out": [
+        "\"pot\"",
+        "0"
+      ],
+      "stack_out": [
+        "0",
+        "\"pot\""
+      ]
+    },
+    "117": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "maybe_exists%0#0",
+        "maybe_value%0#0"
+      ],
+      "stack_out": [
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "118": {
+      "error": "check self.pot exists",
+      "op": "assert // check self.pot exists",
+      "stack_out": [
+        "maybe_value%0#0"
+      ]
+    },
+    "119": {
+      "op": "txn Amount",
+      "defined_out": [
+        "maybe_value%0#0",
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "maybe_value%0#0",
+        "tmp%8#0"
+      ]
+    },
+    "121": {
+      "op": "+",
+      "defined_out": [
+        "materialized_values%0#0"
+      ],
+      "stack_out": [
+        "materialized_values%0#0"
+      ]
+    },
+    "122": {
+      "op": "bytec_0 // \"pot\"",
+      "stack_out": [
+        "materialized_values%0#0",
+        "\"pot\""
+      ]
+    },
+    "123": {
+      "op": "swap",
+      "stack_out": [
+        "\"pot\"",
+        "materialized_values%0#0"
+      ]
+    },
+    "124": {
+      "op": "app_global_put",
+      "stack_out": []
+    },
+    "125": {
+      "retsub": true,
+      "op": "retsub"
+    },
+    "126": {
+      "subroutine": "smart_contracts.contracts.contract.PotContract.withdraw",
+      "params": {},
+      "block": "withdraw",
+      "stack_in": [],
+      "op": "txn Sender",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "128": {
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "0",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "0"
+      ]
+    },
+    "129": {
+      "op": "bytec_1 // \"creator\"",
+      "defined_out": [
+        "\"creator\"",
+        "0",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "0",
+        "\"creator\""
+      ]
+    },
+    "130": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "maybe_exists%0#0",
+        "maybe_value%0#0",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "131": {
+      "error": "check self.creator exists",
+      "op": "assert // check self.creator exists",
+      "stack_out": [
+        "tmp%0#0",
+        "maybe_value%0#0"
+      ]
+    },
+    "132": {
+      "op": "==",
+      "defined_out": [
+        "tmp%1#0"
+      ],
+      "stack_out": [
+        "tmp%1#0"
+      ]
+    },
+    "133": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "134": {
+      "op": "itxn_begin"
+    },
+    "135": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "0"
+      ]
+    },
+    "136": {
+      "op": "bytec_0 // \"pot\"",
+      "defined_out": [
+        "\"pot\"",
+        "0"
+      ],
+      "stack_out": [
+        "0",
+        "\"pot\""
+      ]
+    },
+    "137": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "maybe_exists%1#0",
+        "maybe_value%1#0"
+      ],
+      "stack_out": [
+        "maybe_value%1#0",
+        "maybe_exists%1#0"
+      ]
+    },
+    "138": {
+      "error": "check self.pot exists",
+      "op": "assert // check self.pot exists",
+      "stack_out": [
+        "maybe_value%1#0"
+      ]
+    },
+    "139": {
+      "op": "txn Sender",
+      "defined_out": [
+        "inner_txn_params%0%%param_Receiver_idx_0#0",
+        "maybe_value%1#0"
+      ],
+      "stack_out": [
+        "maybe_value%1#0",
+        "inner_txn_params%0%%param_Receiver_idx_0#0"
+      ]
+    },
+    "141": {
+      "op": "itxn_field Receiver",
+      "stack_out": [
+        "maybe_value%1#0"
+      ]
+    },
+    "143": {
+      "op": "itxn_field Amount",
+      "stack_out": []
+    },
+    "145": {
+      "op": "intc_1 // pay",
+      "defined_out": [
+        "pay"
+      ],
+      "stack_out": [
+        "pay"
+      ]
+    },
+    "146": {
+      "op": "itxn_field TypeEnum",
+      "stack_out": []
+    },
+    "148": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "0"
+      ]
+    },
+    "149": {
+      "op": "itxn_field Fee",
+      "stack_out": []
+    },
+    "151": {
+      "op": "itxn_submit"
+    },
+    "152": {
+      "op": "bytec_0 // \"pot\"",
+      "stack_out": [
+        "\"pot\""
+      ]
+    },
+    "153": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "\"pot\"",
+        "0"
+      ]
+    },
+    "154": {
+      "op": "app_global_put",
+      "stack_out": []
+    },
+    "155": {
+      "retsub": true,
+      "op": "retsub"
+    }
+  }
+}
