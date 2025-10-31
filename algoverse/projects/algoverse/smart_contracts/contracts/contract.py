@@ -19,8 +19,9 @@ class PotContract(ARC4Contract):
         assert payment == Global.current_application_address
         assert Txn.amount > UInt64(0)
         self.pot += Txn.amount
-
+  
     @abimethod
+    
     def withdraw(self) -> None:
         # Only creator can withdraw
         assert Txn.sender == self.creator
